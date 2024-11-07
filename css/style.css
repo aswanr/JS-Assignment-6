@@ -1,3 +1,8 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 body {
     display: flex;
     flex-direction: column;
@@ -5,14 +10,12 @@ body {
     justify-content: center;
     height: 100vh;
 }
-
 .board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     border: 2px solid green;
 }
-
 .colom {
     width: 100px;
     height: 100px;
@@ -22,7 +25,6 @@ body {
     font-size: 2rem;
     border: 2px solid #000000;
 }
-
 #restartButton {
     margin-top: 20px;
     padding: 10px 20px;
