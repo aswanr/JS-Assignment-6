@@ -1,5 +1,5 @@
 const colom = document.querySelectorAll('.colom');
-var hed=document.getElementsByTagName('h1')[0];
+const hed=document.getElementsByTagName('h1')[0];
 let text=true;
 
 colom.forEach(div=>{
@@ -13,61 +13,38 @@ colom.forEach(div=>{
 });
 
 function winnerchecking(){
-    const a=document.getElementById("one").textContent;
-    const b=document.getElementById("two").textContent;
-    const c=document.getElementById("three").textContent;
-    const d=document.getElementById("four").textContent;
-    const e=document.getElementById("five").textContent;
-    const f=document.getElementById("six").textContent;
-    const g=document.getElementById("seven").textContent;
-    const h=document.getElementById("eight").textContent;
-    const i=document.getElementById("nine").textContent;
-    
-    if (a !== "" && a === b && c === b) {
-        hed.textContent = `The Winner is : ${a}`;
-        return setTimeout(restart,3000);
-    } 
-    else if(d !== "" && d === e && e === f) {
-        hed.textContent = `The Winner is : ${d}`;
-        return setTimeout(restart,3000);
-    }
-    else if(g !== "" && g === h && h === i){
-        hed.textContent = `The Winner is : ${g}`;
-        return setTimeout(restart,3000);
-    }
-    else if(a !== "" && a === d && d === g) {
-        hed.textContent = `The Winner is : ${a}`;
-        return setTimeout(restart,3000);
-    }
-    else if(b !== "" && b === e && e === h) {
-        hed.textContent = `The Winner is : ${b}`;
-        return setTimeout(restart,3000);
-    }
-    else if(c !== "" && c === f && f === i) {
-        hed.textContent = `The Winner is : ${c}`;
-        return setTimeout(restart,3000);
-    }
-    else if(a!== "" && a === e && e=== i){
-        hed.textContent = `The Winner is : ${a}`;
-        return setTimeout(restart,3000);
-    }
-    else if(c !== "" && c=== e && e === g){
-        hed.textContent = `The Winner is : ${c}`;
-        return setTimeout(restart,3000);
-    }
-
-    else if (a !== "" && b !== "" && c !== "" && d !== "" && e !== "" && f !== "" && g !== "" && h !== "" && i !== "" )
-         {
-            alert("It's a draw!"); 
-            hed.textContent = "This match is draw";
-            return setTimeout(restart,4000);
-         }
+    const cells = [ 
+        document.getElementById("one").textContent, 
+        document.getElementById("two").textContent, 
+        document.getElementById("three").textContent, 
+        document.getElementById("four").textContent, 
+        document.getElementById("five").textContent, 
+        document.getElementById("six").textContent,
+        document.getElementById("seven").textContent, 
+        document.getElementById("eight").textContent,
+        document.getElementById("nine").textContent 
+    ];
+    const winninpattern=[
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,4,8],[2,4,6],[0,3,6],[1,4,7],[2,5,8],
+    ];
+     winninpattern.forEach(combination=>{ 
+        const [a, b, c] = combination;
+        console.log(a);
+         if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c])
+             { 
+                alert(`Won By: ${cells[a]}`); 
+                return restart(); 
+            } 
+     })
+     if(cells[a] !==cells[b] && cells[a] !== cells[c]){
+        alert("its draw.....");
+     }
 }
 
 function restart(){
     colom.forEach(div=>{        
         div.textContent="";
         hed.textContent="Tic Tac Toe";
-        
     }); 
 }
